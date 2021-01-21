@@ -14,14 +14,14 @@ jobs:
               DEPENDENCIES: ['', '--prefer-lowest']
         steps:
             - name: Deploy
-              if: ${{ matrix.php == 7.4 && matrix.DEPENDENCIES == '' && contains(github.ref, 'tag')}}
+              if: ${{ matrix.php == 7.2 && matrix.DEPENDENCIES == '' && contains(github.ref, 'tag')}}
               run: echo "Update schema" ${{ github.ref }}
 
             - name: Checkout
               run: echo "Update schema" ${{ github.ref }} ${{ matrix.DEPENDENCIES }}
 
             - name: Update Schema
-              if: ${{ matrix.php == 7.4 && matrix.DEPENDENCIES == ''}}
+              if: ${{ matrix.php == 7.2 && matrix.DEPENDENCIES == ''}}
               run: |
                   sudo chmod +775 schema.sh
                   ./schema.sh
