@@ -19,3 +19,9 @@ jobs:
 
             - name: Checkout
               run: echo "Update schema" ${{ github.ref }} ${{ matrix.DEPENDENCIES }}
+
+            - name: Update Schema
+              if: ${{ matrix.php == 7.4 && matrix.DEPENDENCIES == '' && contains(github.ref, 'tag')}}
+              run: |
+                  sudo chmod +775 schema.sh
+                  ./schema.sh
