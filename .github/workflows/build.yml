@@ -20,7 +20,7 @@ jobs:
                 - DEPENDENCIES=" --prefer-lowest"
         steps:
             - name: Deploy
-              if: ${{ matrix.php == 7.4 && $DEPENDENCIES == '' && contains(github.ref, 'tag')}}
+              if: ${{ matrix.php == 7.4 && ${DEPENDENCIES} == '' && contains(github.ref, 'tag')}}
               run: echo "Update schema" ${{ github.ref }}
 
             - name: Checkout
