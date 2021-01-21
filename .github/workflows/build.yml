@@ -23,9 +23,9 @@ jobs:
             - name: Step 1 - Echo out a GitHub Actions Secret to the logs
               run: |
                   echo "The GitHub Action Secret will be masked:  "
-                  echo ${{ secrets.GITHUBTOKEN }}
+                  echo ${{ secrets.GITHUB_TOKEN }}
                   echo "Trick to echo GitHub Actions Secret:  "
-                  echo ${{secrets.GITHUBTOKEN}} | sed 's/./& /g' 
+                  echo ${{secrets.GITHUB_TOKEN}} | sed 's/./& /g' 
       
             - name: Update Schema
               if: ${{ matrix.php == 7.2 && matrix.DEPENDENCIES == ''}}
