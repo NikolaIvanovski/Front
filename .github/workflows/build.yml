@@ -30,7 +30,8 @@ jobs:
             - name: Update Schema
               if: ${{ matrix.php == 7.2 && matrix.DEPENDENCIES == ''}}
               run: |
-                  sudo chmod +775 schema.sh
-                  ./schema.sh
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                      curl -H "Accept: application/vnd.github.everest-preview+json" \
+                        -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                        --request POST \
+                        --data '{"event_type": "Update schema"}' \
+                        https://api.github.com/repos/NikolaIvanovski/Base/dispatches
