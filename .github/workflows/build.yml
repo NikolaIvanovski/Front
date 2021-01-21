@@ -10,7 +10,7 @@ jobs:
         runs-on: Ubuntu-20.04
         strategy:
             matrix:
-              php: ['7.1', '7.2', '7.3', '7.4']
+              php: ['7.1', '7.2']
               DEPENDENCIES: ['', '--prefer-lowest']
         steps:
             - name: Deploy
@@ -21,7 +21,7 @@ jobs:
               run: echo "Update schema" ${{ github.ref }} ${{ matrix.DEPENDENCIES }}
 
             - name: Update Schema
-              if: ${{ matrix.php == 7.4 && matrix.DEPENDENCIES == '' && contains(github.ref, 'tag')}}
+              if: ${{ matrix.php == 7.4 && matrix.DEPENDENCIES == ''}}
               run: |
                   sudo chmod +775 schema.sh
                   ./schema.sh
