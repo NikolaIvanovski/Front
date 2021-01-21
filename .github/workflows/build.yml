@@ -1,0 +1,17 @@
+name: CI
+
+on: [push, pull_request]
+
+env:
+    DEFAULT_COMPOSER_FLAGS: --no-interaction --no-ansi --no-progress --no-suggest --prefer-dist
+
+jobs:
+    build:
+        runs-on: Ubuntu-20.04
+        strategy:
+            matrix:
+                php: ['7.1', '7.2', '7.3', '7.4']
+                DEPENDENCIES: ['', '--prefer-lowest']
+        steps:
+            - name: Checkout
+              run: echo "Update schema" ${{ github.ref }}
