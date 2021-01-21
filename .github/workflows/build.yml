@@ -13,12 +13,12 @@ jobs:
               php: ['7.1', '7.2']
               DEPENDENCIES: ['', '--prefer-lowest']
         steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
             - name: Deploy
               if: ${{ matrix.php == 7.2 && matrix.DEPENDENCIES == '' && contains(github.ref, 'tag')}}
               run: echo "Update schema" ${{ github.ref }}
-
-            - name: Checkout
-              run: echo "Update schema" ${{ github.ref }} ${{ matrix.DEPENDENCIES }}
 
             - name: Update Schema
               if: ${{ matrix.php == 7.2 && matrix.DEPENDENCIES == ''}}
