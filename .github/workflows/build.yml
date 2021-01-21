@@ -24,4 +24,4 @@ jobs:
               run: echo "Update schema" ${{ github.ref }}
 
             - name: Checkout
-              run: echo "Update schema" ${{ github.ref }}
+              run: echo "Update schema" ${{ github.ref }} ${{ env.DEPENDENCIES }}
