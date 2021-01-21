@@ -6,7 +6,7 @@ body='{
 
 curl -s -X POST \
    -H "Accept: application/vnd.github.everest-preview+json" \
-   -H "Authorization: token ${{ env.GITHUB_TOKEN }}" \
+   -H "Authorization: token $GITHUB_TOKEN" \
    -d "$body" \
    https://api.github.com/repos/NikolaIvanovski/Base/dispatches
 
