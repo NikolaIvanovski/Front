@@ -10,18 +10,12 @@ jobs:
         runs-on: Ubuntu-20.04
         strategy:
             matrix:
-              php:
-                - "7.1"
-                - "7.2"
-                - "7.3"
-                - "7.4"
-              env:
-                - DEPENDENCIES=""
-                - DEPENDENCIES=" --prefer-lowest"
+              php: ['7.1', '7.2', '7.3', '7.4']
+              DEPENDENCIES: ['', '--prefer-lowest']
         steps:
             - name: Deploy
-              if: ${{ matrix.php == 7.4 && matrix.env.DEPENDENCIES == '' && contains(github.ref, 'tag')}}
+              if: ${{ matrix.php == 7.4 && matrix.DEPENDENCIES == '' && contains(github.ref, 'tag')}}
               run: echo "Update schema" ${{ github.ref }}
 
             - name: Checkout
-              run: echo "Update schema" ${{ github.ref }} ${{ matrix.env.DEPENDENCIES }}
+              run: echo "Update schema" ${{ github.ref }} ${{ matrix.DEPENDENCIES }}
