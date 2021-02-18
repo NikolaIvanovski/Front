@@ -1,6 +1,6 @@
 name: CI
 
-on: [push, pull_request]
+on: [pull_request]
 
 env:
     DEFAULT_COMPOSER_FLAGS: --no-interaction --no-ansi --no-progress --no-suggest --prefer-dist
