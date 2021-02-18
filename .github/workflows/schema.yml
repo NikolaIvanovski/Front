@@ -44,10 +44,10 @@ jobs:
                   
             - name: Generate documentation
               run: |
-                  cd /home/runner/work/docker-eshop-sdk/data/oxideshop/
+                  cd /home/runner/work/docker-eshop-sdk/data/oxideshop/vendor
                   ls -l
-                  cp vendor/oxid-esales/graphql-base/graphdocs.php .
-                  php -S localhost:8080 &
-                  sleep 2;
-                  TOKEN=$(curl --silent http://localhost:8080/graphdocs.php?skipSession=1 -H 'Content-Type: application/json' --data-binary '{"query":"query {token(username: \"admin\", password:\"admin\")}"}' | sed -n 's|.*"token":"\(.*\)\"}}|\1|p')
+                  #cp vendor/oxid-esales/graphql-base/graphdocs.php .
+                  #php -S localhost:8080 &
+                  #sleep 2;
+                  #TOKEN=$(curl --silent http://localhost:8080/graphdocs.php?skipSession=1 -H 'Content-Type: application/json' --data-binary '{"query":"query {token(username: \"admin\", password:\"admin\")}"}' | sed -n 's|.*"token":"\(.*\)\"}}|\1|p')
                   #graphdoc -e http://localhost:8080/graphdocs.php?skipSession=1 -o $GITHUB_WORKSPACE/docs/_static/schema -f -x "Authorization: Bearer $TOKEN"
