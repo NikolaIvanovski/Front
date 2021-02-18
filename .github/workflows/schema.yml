@@ -31,7 +31,7 @@ jobs:
                   sleep 10
                   make reset-db
                   
-           - name: Prepare shop and run codeception in docker
+            - name: Prepare shop and run codeception in docker
               if: ${{ matrix.php != '7.1' && env.DEPENDENCIES == '' }}
               run: |
                   cd /home/runner/work/docker-eshop-sdk/data/oxideshop/
