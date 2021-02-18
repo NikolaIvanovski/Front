@@ -32,7 +32,7 @@ jobs:
                   
             - name: Prepare shop
               run: |
-                  npm install -g @2fd/graphdoc
+                  sudo npm install -g @2fd/graphdoc
                   cd /home/runner/work/docker-eshop-sdk/data/oxideshop/
                   cp -r $GITHUB_WORKSPACE graphql-base-module
                   docker-compose exec -T --user oxid php composer config repositories.grapqhl-base path ./graphql-base-module/
