@@ -41,11 +41,10 @@ jobs:
                   docker-compose exec -T --user oxid php php bin/oe-console oe:module:install-configuration source/modules/oe/graphql-storefront/
                   docker-compose exec -T --user oxid php php bin/oe-console oe:module:activate oe_graphql_base
                   docker-compose exec -T --user oxid php php bin/oe-console oe:module:activate oe_graphql_storefront
-            
-            - name: Setup tmate session
-              uses: mxschmitt/action-tmate@v3
                   
             - name: Generate documentation
               run: |
+                  php -S localhost:8080 &
+                  sleep 2;
                   TOKEN=$(curl --silent http://localhost:8080/graphdocs.php?skipSession=1 -H 'Content-Type: application/json' --data-binary '{"query":"query {token(username: \"admin\", password:\"admin\")}"}' | sed -n 's|.*"token":"\(.*\)\"}}|\1|p')
                   graphdoc -e http://localhost:8080/graphdocs.php?skipSession=1 -o $GITHUB_WORKSPACE/docs/_static/schema -f -x "Authorization: Bearer $TOKEN"
