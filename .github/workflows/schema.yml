@@ -46,7 +46,7 @@ jobs:
               run: |
                   cd /home/runner/work/docker-eshop-sdk/data/oxideshop/
                   ls -l
-                  cd oxideshop-ce
+                  cd vendor/oxideshop-ce
                   ls -l
                   cd source
                   ls -l
