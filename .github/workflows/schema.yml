@@ -45,7 +45,11 @@ jobs:
             - name: Generate documentation
               run: |
                   cd /home/runner/work/docker-eshop-sdk/data/oxideshop/
-                  #ls -l
+                  ls -l
+                  cd oxideshop-ce
+                  ls -l
+                  cd source
+                  ls -l
                   cp vendor/oxid-esales/graphql-base/graphdocs.php .
                   php -S localhost:8080 &
                   sleep 2;
