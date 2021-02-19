@@ -63,6 +63,3 @@ jobs:
                   #FOLDER: docs/_static/schema # The folder the action should deploy.
                   FOLDER: .
                   CLEAN: true
-
-             
-             
