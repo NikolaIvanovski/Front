@@ -44,9 +44,7 @@ jobs:
                   
             - name: Generate documentation
               run: |
-                  cd $GITHUB_WORKSPACE
-                  ls -l
-                  cd /home/runner/work/Front/Front
+                  cd /home/runner/work/Front
                   ls -l
                   cd /home/runner/work/docker-eshop-sdk/data/oxideshop/
                   ls -l
