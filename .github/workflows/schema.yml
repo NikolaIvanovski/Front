@@ -52,8 +52,6 @@ jobs:
                   ls -l
                   cd vendor
                   ls -l
-                  cd oxideshop-ce
-                  ls -l
                   cp vendor/oxid-esales/graphql-base/graphdocs.php .
                   php -S localhost:8080 &
                   sleep 2;
