@@ -52,9 +52,6 @@ jobs:
                   TOKEN=$(curl --silent http://localhost/graphql?skipSession=1 -H 'Content-Type: application/json' --data-binary '{"query":"query {token(username: \"admin\", password:\"admin\")}"}' | sed -n 's|.*"token":"\(.*\)\"}}|\1|p')
                   graphdoc -e http://localhost/graphql?skipSession=1 -o $GITHUB_WORKSPACE/docs/_static/schema -f -x "Authorization: Bearer $TOKEN"
 
-# #             - name: Setup tmate session
-# #               uses: mxschmitt/action-tmate@v3
-
             - name: Deploy
               uses: JamesIves/github-pages-deploy-action@releases/v3
               with:
