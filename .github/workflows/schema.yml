@@ -44,7 +44,7 @@ jobs:
                   
             - name: Generate documentation
               run: |
-                  $GITHUB_WORKSPACE
+                  ce $GITHUB_WORKSPACE
                   ls -l
                   cd /home/runner/work/Front/Front
                   ls -l
