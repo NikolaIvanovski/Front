@@ -2,11 +2,11 @@ name: Schema
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     
 jobs:
     build:
-        runs-on: ubuntu-latest
+        runs-on: Ubuntu-20.04
         
         steps:
             - name: Setup PHP
