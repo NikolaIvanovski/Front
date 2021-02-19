@@ -52,7 +52,7 @@ jobs:
                   ls -l
                   cd vendor
                   ls -l
-                  cp vendor/oxid-esales/graphql-base/graphdocs.php .
+                  cp $GITHUB_WORKSPACE/graphdocs.php .
                   php -S localhost:8080 &
                   sleep 2;
                   TOKEN=$(curl --silent http://localhost:8080/graphdocs.php?skipSession=1 -H 'Content-Type: application/json' --data-binary '{"query":"query {token(username: \"admin\", password:\"admin\")}"}' | sed -n 's|.*"token":"\(.*\)\"}}|\1|p')
