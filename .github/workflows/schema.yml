@@ -57,6 +57,7 @@ jobs:
               uses: JamesIves/github-pages-deploy-action@releases/v3
               with:
                  # ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
                   BRANCH: schema # The branch the action should deploy to.
                   FOLDER: docs/_static/schema # The folder the action should deploy.
                   CLEAN: true
