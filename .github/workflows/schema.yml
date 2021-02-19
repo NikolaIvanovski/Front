@@ -56,7 +56,7 @@ jobs:
               with:
                   ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   BRANCH: schema # The branch the action should deploy to.
-                  FOLDER: docs/_static/schema # The folder the action should deploy.
+                  FOLDER: /home/runner/work/docker-eshop-sdk/data/oxideshop/docs/_static/schema # The folder the action should deploy.
                   CLEAN: true
 
             #- name: Setup tmate session
