@@ -51,15 +51,15 @@ jobs:
                   TOKEN=$(curl --silent http://localhost/graphql?skipSession=1 -H 'Content-Type: application/json' --data-binary '{"query":"query {token(username: \"admin\", password:\"admin\")}"}' | sed -n 's|.*"token":"\(.*\)\"}}|\1|p')
                   graphdoc -e http://localhost/graphql?skipSession=1 -o $GITHUB_WORKSPACE/docs/_static/schema -f -x "Authorization: Bearer $TOKEN"
 
-            - name: Deploy
-              uses: JamesIves/github-pages-deploy-action@releases/v3
-              with:
-                  ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  BRANCH: schema # The branch the action should deploy to.
-                  FOLDER: /home/runner/work/docker-eshop-sdk/data/oxideshop/docs/_static/schema # The folder the action should deploy.
-                  CLEAN: true
+#             - name: Deploy
+#               uses: JamesIves/github-pages-deploy-action@releases/v3
+#               with:
+#                   ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#                   BRANCH: schema # The branch the action should deploy to.
+#                   FOLDER: /home/runner/work/docker-eshop-sdk/data/oxideshop/docs/_static/schema # The folder the action should deploy.
+#                   CLEAN: true
 
-            #- name: Setup tmate session
-             # uses: mxschmitt/action-tmate@v3
+            - name: Setup tmate session
+             uses: mxschmitt/action-tmate@v3
              
              
