@@ -1,7 +1,8 @@
 name: Schema
 
 on:
-    - push
+  push:
+    branches: [ master ]
     
 jobs:
     build:
