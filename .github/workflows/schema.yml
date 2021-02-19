@@ -46,7 +46,7 @@ jobs:
               run: |
                   #cd /home/runner/work/Front
                   #ls -l
-                  #cd /home/runner/work/docker-eshop-sdk/data/oxideshop/
+                  cd /home/runner/work/docker-eshop-sdk/data/oxideshop/
                   #ls -l
                   #cd vendor
                   #ls -l
