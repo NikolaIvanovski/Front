@@ -44,10 +44,7 @@ jobs:
                   
             - name: Generate documentation
               run: |
-                  #cd /home/runner/work/Front
-                  #ls -l
                   cd /home/runner/work/docker-eshop-sdk/data/oxideshop/
-                  cat source/.htaccess
                   #ls -l
                   #cd vendor
                   #ls -l
