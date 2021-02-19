@@ -58,7 +58,7 @@ jobs:
               with:
                   ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   BRANCH: schema # The branch the action should deploy to.
-                  FOLDER: $GITHUB_WORKSPACE/docs/_static/schema # The folder the action should deploy.
+                  FOLDER: docs/_static/schema # The folder the action should deploy.
                   CLEAN: true
 
              
