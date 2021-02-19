@@ -45,10 +45,6 @@ jobs:
             - name: Generate documentation
               run: |
                   cd /home/runner/work/docker-eshop-sdk/data/oxideshop/
-                  #ls -l
-                  #cd vendor
-                  #ls -l
-                  #cp $GITHUB_WORKSPACE/graphdocs.php .
                   php -S localhost:8080 &
                   sleep 2;
                   TOKEN=$(curl --silent http://localhost/graphql?skipSession=1 -H 'Content-Type: application/json' --data-binary '{"query":"query {token(username: \"admin\", password:\"admin\")}"}' | sed -n 's|.*"token":"\(.*\)\"}}|\1|p')
