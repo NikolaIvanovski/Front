@@ -12,7 +12,7 @@ jobs:
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
-                  php-version: 7.4
+                  php-version: 7.2
 
             - name: Checkout
               uses: actions/checkout@v2
@@ -43,16 +43,16 @@ jobs:
                   docker-compose exec -T --user oxid php php bin/oe-console oe:module:activate oe_graphql_base
                   docker-compose exec -T --user oxid php php bin/oe-console oe:module:activate oe_graphql_storefront
 
-            - name: Generate documentation
-              run: |
-                  sudo npm install -g @2fd/graphdoc
-                  cd /home/runner/work/docker-eshop-sdk/data/oxideshop/
-                  sleep 2;
-                  TOKEN=$(curl --silent http://localhost/graphql?skipSession=1 -H 'Content-Type: application/json' --data-binary '{"query":"query {token(username: \"admin\", password:\"admin\")}"}' | sed -n 's|.*"token":"\(.*\)\"}}|\1|p')
-                  graphdoc -e http://localhost/graphql?skipSession=1 -o $GITHUB_WORKSPACE/docs/_static/schema -f -x "Authorization: Bearer $TOKEN"
+#             - name: Generate documentation
+#               run: |
+#                   sudo npm install -g @2fd/graphdoc
+#                   cd /home/runner/work/docker-eshop-sdk/data/oxideshop/
+#                   sleep 2;
+#                   TOKEN=$(curl --silent http://localhost/graphql?skipSession=1 -H 'Content-Type: application/json' --data-binary '{"query":"query {token(username: \"admin\", password:\"admin\")}"}' | sed -n 's|.*"token":"\(.*\)\"}}|\1|p')
+#                   graphdoc -e http://localhost/graphql?skipSession=1 -o $GITHUB_WORKSPACE/docs/_static/schema -f -x "Authorization: Bearer $TOKEN"
 
-            - name: Deploy
-              uses: JamesIves/github-pages-deploy-action@releases/v3
-              with:
-                  BRANCH: schema
-                  FOLDER: docs/_static/schema
+#             - name: Deploy
+#               uses: JamesIves/github-pages-deploy-action@releases/v3
+#               with:
+#                   BRANCH: schema
+#                   FOLDER: docs/_static/schema
