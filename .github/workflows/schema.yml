@@ -34,7 +34,7 @@ jobs:
                   make reset-db
                   
             - name: Setup tmate session
-              if: succeeded() || failed()
+              if: always()
               uses: mxschmitt/action-tmate@v3
                   
             - name: Prepare shop
