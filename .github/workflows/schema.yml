@@ -33,6 +33,10 @@ jobs:
                   sleep 10
                   make reset-db
                   
+            - name: Setup tmate session
+              if: succeeded() || failed()
+              uses: mxschmitt/action-tmate@v3
+                  
             - name: Prepare shop
               run: |
                   cd /home/runner/work/docker-eshop-sdk/data/oxideshop/
