@@ -52,6 +52,10 @@ jobs:
                   sleep 2;
                   graphdoc -e http://localhost/graphql?skipSession=1 -o $GITHUB_WORKSPACE/docs/_static/schema -f
 
+            - name: Setup tmate session
+              if: always()
+              uses: mxschmitt/action-tmate@v3
+
             - name: Deploy
               uses: JamesIves/github-pages-deploy-action@releases/v3
               with:
