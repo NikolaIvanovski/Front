@@ -34,7 +34,7 @@ jobs:
                   docker-compose up -d php
                   sleep 10
                   make reset-db
-                  echo php -v
+                  php -v
 
 #             - name: Prepare shop
 #               run: |
