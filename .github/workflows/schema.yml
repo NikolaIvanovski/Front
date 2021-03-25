@@ -1,18 +1,18 @@
 name: Schema
 
 on:
-  push:
-    branches: [ main ]
-    
+    push:
+        branches: [ master ]
+
 jobs:
     build:
         runs-on: Ubuntu-20.04
-        
+
         steps:
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
-                  php-version: 7.2
+                  php-version: 7.4
 
             - name: Checkout
               uses: actions/checkout@v2
@@ -23,8 +23,8 @@ jobs:
                   git clone --depth 1 https://github.com/OXID-eSales/docker-eshop-sdk.git
                   cd docker-eshop-sdk
                   make .env
-                  sed "s/PHP_VERSION=.*/PHP_VERSION=7.4/" -i .env
-                  git clone --depth 1 https://github.com/OXID-eSales/oxideshop_ce.git --branch b-6.2.x --single-branch data/oxideshop
+                  sed "s/PHP_VERSION=.*/PHP_VERSION=7.3/" -i .env
+                  git clone --depth 1 https://github.com/OXID-eSales/oxideshop_ce.git --branch master --single-branch data/oxideshop
                   mkdir data/oxideshop/debug
                   make permissions
                   make data/oxideshop/vendor/
@@ -32,31 +32,26 @@ jobs:
                   docker-compose up -d php
                   sleep 10
                   make reset-db
-                  
-            - name: Setup tmate session
-              if: always()
-              uses: mxschmitt/action-tmate@v3
-                  
+
             - name: Prepare shop
               run: |
                   cd /home/runner/work/docker-eshop-sdk/data/oxideshop/
                   docker-compose exec -T --user oxid php composer require oxid-esales/graphql-base
                   docker-compose exec -T --user oxid php composer require oxid-esales/graphql-storefront
-                  docker-compose exec -T --user oxid php php bin/oe-console oe:module:install-configuration source/modules/oe/graphql-base/
-                  docker-compose exec -T --user oxid php php bin/oe-console oe:module:install-configuration source/modules/oe/graphql-storefront/
+                  docker-compose exec -T --user oxid php php bin/oe-console oe:module:install vendor/oxid-esales/graphql-base/
+                  docker-compose exec -T --user oxid php php bin/oe-console oe:module:install vendor/oxid-esales/graphql-storefront/
                   docker-compose exec -T --user oxid php php bin/oe-console oe:module:activate oe_graphql_base
                   docker-compose exec -T --user oxid php php bin/oe-console oe:module:activate oe_graphql_storefront
 
-#             - name: Generate documentation
-#               run: |
-#                   sudo npm install -g @2fd/graphdoc
-#                   cd /home/runner/work/docker-eshop-sdk/data/oxideshop/
-#                   sleep 2;
-#                   TOKEN=$(curl --silent http://localhost/graphql?skipSession=1 -H 'Content-Type: application/json' --data-binary '{"query":"query {token(username: \"admin\", password:\"admin\")}"}' | sed -n 's|.*"token":"\(.*\)\"}}|\1|p')
-#                   graphdoc -e http://localhost/graphql?skipSession=1 -o $GITHUB_WORKSPACE/docs/_static/schema -f -x "Authorization: Bearer $TOKEN"
+            - name: Generate documentation
+              run: |
+                  sudo npm install -g @2fd/graphdoc
+                  cd /home/runner/work/docker-eshop-sdk/data/oxideshop/
+                  sleep 2;
+                  graphdoc -e http://localhost/graphql?skipSession=1 -o $GITHUB_WORKSPACE/docs/_static/schema -f
 
-#             - name: Deploy
-#               uses: JamesIves/github-pages-deploy-action@releases/v3
-#               with:
-#                   BRANCH: schema
-#                   FOLDER: docs/_static/schema
+            - name: Deploy
+              uses: JamesIves/github-pages-deploy-action@releases/v3
+              with:
+                  BRANCH: schema
+                  FOLDER: docs/_static/schema
