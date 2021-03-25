@@ -34,8 +34,8 @@ jobs:
                   docker-compose up -d php
                   sleep 10
                   make reset-db
-                  sudo phpdismod xdebug
-                  sudo service apache2 restart
+                  docker-compose exec -T --user oxid php sudo phpdismod xdebug
+                  docker-compose exec -T --user oxid php sudo service apache2 restart
 
             - name: Prepare shop
               run: |
