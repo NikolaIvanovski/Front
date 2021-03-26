@@ -62,3 +62,4 @@ jobs:
               with:
                   BRANCH: schema
                   FOLDER: docs/_static/schema
+
