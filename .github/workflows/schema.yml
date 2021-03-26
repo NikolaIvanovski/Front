@@ -22,7 +22,7 @@ jobs:
             - name: Build docker
               run: |
                   cd /home/runner/work/
-                  git clone --depth 1 https://github.com/OXID-eSales/docker-eshop-sdk.git --branch master-xdebug_nested_level
+                  git clone --depth 1 https://github.com/OXID-eSales/docker-eshop-sdk.git --branch master-xdebug_nesting_level
                   cd docker-eshop-sdk
                   make .env
                   sed "s/PHP_VERSION=.*/PHP_VERSION=${{ env.php }}/" -i .env
